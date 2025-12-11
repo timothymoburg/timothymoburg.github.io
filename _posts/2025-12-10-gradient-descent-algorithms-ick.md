@@ -63,7 +63,7 @@ $$
 where $\eta$ is the global learning rate, $\epsilon$ is some small number to prevent division by zero, and $\mathbf{r}_0 = \mathbf{0}$. RMSProp tends to perform well in on-line and non-stationary settings.  
 
 ## Adam
-Adam, a portmanteau of <ins>ada</ins>ptive <ins>m</ins>oment estimation, is another method with an adaptive learning rate, especially popular in the deep learning community where it was the optimizer chosen to train OpenAI's ChatGPT. Adam can be loosely thought of as RMSProp with windowed momentum. So, like in RMSProp, we will use an exponential moving average of squared gradients given here by $\color{black}\mathbf{v}\_{t} = \beta\_{2} \mathbf{v}\_{t-1} + \(1-\beta\_{2}\)\mathbf{g}\_{t} \circ \mathbf{g}\_{t}$, but also incorporate an exponential moving average of momentum given here by $\color{black}\mathbf{m}\_{t}\color{black} = \beta\_{1} \mathbf{m}\_{t-1} + \(1-\beta\_{1}\)\mathbf{g}\_{t}$.
+Adam, a portmanteau of <ins>ada</ins>ptive <ins>m</ins>oment estimation, is another method with an adaptive learning rate, especially popular in the deep learning community where it was the optimizer chosen to train OpenAI's ChatGPT. Adam can be loosely thought of as RMSProp with windowed momentum. So, like in RMSProp, we will use an exponential moving average of squared gradients given here by $\mathbf{v}\_{t} = \beta\_{2} \mathbf{v}\_{t-1} + \(1-\beta\_{2}\)\mathbf{g}\_{t} \circ \mathbf{g}\_{t}$, but also incorporate an exponential moving average of momentum given here by $\mathbf{m}\_{t}\color{black} = \beta\_{1} \mathbf{m}\_{t-1} + \(1-\beta\_{1}\)\mathbf{g}\_{t}$.
  Such properties yield a method that is almost Adam but not quite it, sometimes referred to as Adam (biased). Adam (biased) has the update rule  
 
 $$
