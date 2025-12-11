@@ -25,13 +25,13 @@ $$
 where $\gamma$ is a parameter similar to a coefficient of friction and $\eta$ is the global learning rate. Continuing with the dynamical ball analogy for this update rule, we note that, using the definition of the variable $\mathbf{g}\_t$, combining the two lines and rearranging yields  
 
 $$
-	\begin{align\*}
+	\begin{align*}
 		-\eta \nabla F\left(\boldsymbol{\theta}\_{t}\right) &= -\eta \mathbf{g}\_{t}\\
 		&= \boldsymbol{\theta}\_{t+1} - \boldsymbol{\theta}\_{t} - \gamma \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
 		&= \boldsymbol{\theta}\_{t+1} - \boldsymbol{\theta}\_{t} + \left[-\left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right) + \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right)\right] - \gamma \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
 		&= \boldsymbol{\theta}\_{t+1} - 2\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1} + \left(1 - \gamma\right) \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
 		-\nabla F\left(\boldsymbol{\theta}\_{t}\right) &= \frac{\boldsymbol{\theta}\_{t+1} - 2\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}}{\eta} + \frac{1 - \gamma}{\eta} \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right).
-	\end{align\*}
+	\end{align*}
 $$  
 
 The first term on the right is a <a href="https://en.wikipedia.org/wiki/Finite_difference#Higher-order_differences">finite difference approximation</a> for the second derivative $\boldsymbol{\theta}^{\prime\prime}$, while the second term on the right is a scaled <a href="https://en.wikipedia.org/wiki/Finite_difference#Relation_with_derivatives">finite difference approximation</a> for the first derivative $\boldsymbol{\theta}^{\prime}$. Therefore, the momentum update rule corresponds with a second order ordinary differential equation, similar to the equations of motion for a particle of unit mass being acted on by a conservative force (like gravity) and a frictional force (like air resistance) with coefficient $\frac{1 - \gamma}{\eta}$.  
