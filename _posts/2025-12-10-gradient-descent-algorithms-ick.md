@@ -6,7 +6,7 @@ $$
 	\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_{t} - \eta \mathbf{g}_{t}
 $$
 
-where $\boldsymbol{\theta}\_{t}$ is our previous step, $\eta$ is a tunable parameter that determines the step size (also called the learning rate), and $\mathbf{g}\_{t} = \nabla F\left(\boldsymbol{\theta}\_{t}\right)$ is the Euclidean gradient of our objective function with respect to our parameters at time $t$.
+where $\boldsymbol{\theta}_{t}$ is our previous step, $\eta$ is a tunable parameter that determines the step size (also called the learning rate), and $\mathbf{g}_{t} = \nabla F\left(\boldsymbol{\theta}_{t}\right)$ is the Euclidean gradient of our objective function with respect to our parameters at time $t$.
 
 Although gradient descent is a clever method for trying to find minimums, it does have some issues. The contours of many objective functions are far from ideal and can have sections where the direction of the gradient can fluctuate drastically in an area smaller than the step size taken, which can lead to chaotic routes towards the bottom or even prevention of the method from finding a minimum. To address these concerns, various modifications to gradient descent have been proposed. As of 2025, all but one ([L-BFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS)) of the most popular of these methods are first-order ones, not utilizing second derivative information due to the computational cost.
 
@@ -17,8 +17,8 @@ In gradient descent with momentum (also called the heavy ball method), we envisi
 
 $$
 	\begin{align*}
-		\color{red}\mathbf{v}\_{t+1}\color{black} &= \gamma \mathbf{v}\_{t} - \eta \mathbf{g}\_{t}\\
-		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}\_{t} + \color{red}\mathbf{v}\_{t+1}\color{black}
+		\color{red}\mathbf{v}\_{t+1}\color{black} &= \gamma \mathbf{v}_{t} - \eta \mathbf{g}_{t}\\
+		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}_{t} + \color{red}\mathbf{v}\_{t+1}\color{black}
 	\end{align*}
 $$  
 
@@ -26,11 +26,11 @@ where $\gamma$ is a parameter similar to a coefficient of friction and $\eta$ is
 
 $$
 	\begin{align*}
-		-\eta \nabla F\left(\boldsymbol{\theta}\_{t}\right) &= -\eta \mathbf{g}\_{t}\\
-		&= \boldsymbol{\theta}\_{t+1} - \boldsymbol{\theta}\_{t} - \gamma \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
-		&= \boldsymbol{\theta}\_{t+1} - \boldsymbol{\theta}\_{t} + \left[-\left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right) + \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right)\right] - \gamma \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
-		&= \boldsymbol{\theta}\_{t+1} - 2\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1} + \left(1 - \gamma\right) \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
-		-\nabla F\left(\boldsymbol{\theta}\_{t}\right) &= \frac{\boldsymbol{\theta}\_{t+1} - 2\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}}{\eta} + \frac{1 - \gamma}{\eta} \left(\boldsymbol{\theta}\_{t} - \boldsymbol{\theta}\_{t-1}\right).
+		-\eta \nabla F\left(\boldsymbol{\theta}_{t}\right) &= -\eta \mathbf{g}_{t}\\
+		&= \boldsymbol{\theta}\_{t+1} - \boldsymbol{\theta}_{t} - \gamma \left(\boldsymbol{\theta}_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
+		&= \boldsymbol{\theta}\_{t+1} - \boldsymbol{\theta}_{t} + \left[-\left(\boldsymbol{\theta}_{t} - \boldsymbol{\theta}\_{t-1}\right) + \left(\boldsymbol{\theta}_{t} - \boldsymbol{\theta}\_{t-1}\right)\right] - \gamma \left(\boldsymbol{\theta}_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
+		&= \boldsymbol{\theta}\_{t+1} - 2\boldsymbol{\theta}_{t} - \boldsymbol{\theta}\_{t-1} + \left(1 - \gamma\right) \left(\boldsymbol{\theta}_{t} - \boldsymbol{\theta}\_{t-1}\right)\\
+		-\nabla F\left(\boldsymbol{\theta}_{t}\right) &= \frac{\boldsymbol{\theta}\_{t+1} - 2\boldsymbol{\theta}_{t} - \boldsymbol{\theta}\_{t-1}}{\eta} + \frac{1 - \gamma}{\eta} \left(\boldsymbol{\theta}_{t} - \boldsymbol{\theta}\_{t-1}\right).
 	\end{align*}
 $$  
 
@@ -43,8 +43,8 @@ AdaGrad, a portmanteau of <ins>ada</ins>ptive <ins>grad</ins>ient, is a method w
 
 $$
 \begin{align*}
-	\color{blue}\mathbf{r}\_{t}\color{black} &= \mathbf{r}\_{t-1} + \mathbf{g}\_{t} \circ \mathbf{g}\_{t}\\
-	\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}\_{t} - \frac{\eta}{\epsilon + \sqrt{\color{blue}\mathbf{r}\_{t}\color{black}}}\circ \mathbf{g}\_{t}
+	\color{blue}\mathbf{r}_{t}\color{black} &= \mathbf{r}\_{t-1} + \mathbf{g}_{t} \circ \mathbf{g}_{t}\\
+	\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}_{t} - \frac{\eta}{\epsilon + \sqrt{\color{blue}\mathbf{r}_{t}\color{black}}}\circ \mathbf{g}_{t}
 \end{align*}
 $$  
 
@@ -55,8 +55,8 @@ RMSProp, another method with an adaptive learning rate, can be thought of as win
 
 $$
 	\begin{align*}
-		\color{blue}\mathbf{r}\_{t}\color{black} &= \gamma \mathbf{r}\_{t-1} + (1-\gamma)\mathbf{g}\_{t} \circ \mathbf{g}\_{t}\\
-		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}\_{t} - \frac{\eta}{\epsilon + \sqrt{\color{blue}\mathbf{r}\_{t}\color{black}}}\circ \mathbf{g}\_{t}
+		\color{blue}\mathbf{r}_{t}\color{black} &= \gamma \mathbf{r}\_{t-1} + (1-\gamma)\mathbf{g}_{t} \circ \mathbf{g}_{t}\\
+		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}_{t} - \frac{\eta}{\epsilon + \sqrt{\color{blue}\mathbf{r}_{t}\color{black}}}\circ \mathbf{g}_{t}
 	\end{align*}
 $$  
 
@@ -68,9 +68,9 @@ Adam, a portmanteau of <ins>ada</ins>ptive <ins>m</ins>oment estimation, is anot
 
 $$
 	\begin{align*}
-		\color{red}\mathbf{m}\_{t}\color{black} &= \beta\_1 \mathbf{m}\_{t-1} + (1-\beta\_1)\mathbf{g}\_{t}\\
-		\color{blue}\mathbf{v}\_{t}\color{black} &= \beta\_2 \mathbf{v}\_{t-1} + (1-\beta\_2)\mathbf{g}\_{t} \circ \mathbf{g}\_{t}\\
-		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}\_{t} - \frac{\eta}{\epsilon + \sqrt{\color{blue}\mathbf{v}\_{t}\color{black}}}\circ \color{red}\mathbf{m}\_{t}\color{black}
+		\color{red}\mathbf{m}_{t}\color{black} &= \beta\_1 \mathbf{m}\_{t-1} + (1-\beta\_1)\mathbf{g}_{t}\\
+		\color{blue}\mathbf{v}_{t}\color{black} &= \beta\_2 \mathbf{v}\_{t-1} + (1-\beta\_2)\mathbf{g}_{t} \circ \mathbf{g}_{t}\\
+		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}_{t} - \frac{\eta}{\epsilon + \sqrt{\color{blue}\mathbf{v}_{t}\color{black}}}\circ \color{red}\mathbf{m}_{t}\color{black}
 	\end{align*}
 $$  
 
@@ -95,11 +95,11 @@ Combining RMSProp with windowed momentum and bias correction yields the actual A
 
 $$
 	\begin{align*}
-		\color{red}\mathbf{m}\_{t}\color{black} &= \beta\_1 \mathbf{m}\_{t-1} + (1-\beta\_1)\mathbf{g}\_{t}\\
-		\color{blue}\mathbf{v}\_{t}\color{black} &= \beta\_2 \mathbf{v}\_{t-1} + (1-\beta\_2)\mathbf{g}\_{t} \circ \mathbf{g}\_{t}\\
+		\color{red}\mathbf{m}_{t}\color{black} &= \beta\_1 \mathbf{m}\_{t-1} + (1-\beta\_1)\mathbf{g}_{t}\\
+		\color{blue}\mathbf{v}_{t}\color{black} &= \beta\_2 \mathbf{v}\_{t-1} + (1-\beta\_2)\mathbf{g}_{t} \circ \mathbf{g}_{t}\\
 		\color{purple}\hat{\mathbf{m}}\_t\color{black} &= \frac{\color{red}\mathbf{m}\_t\color{black}}{1-\beta\_1^t}\\
 		\color{teal}\hat{\mathbf{v}}\_t\color{black} &= \frac{\color{blue}\mathbf{v}\_t\color{black}}{1-\beta\_2^t}\\
-		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}\_{t} - \frac{\eta}{\epsilon + \sqrt{\color{teal}\hat{\mathbf{v}}\_{t}\color{black}}}\circ \color{purple}\hat{\mathbf{m}}\_{t}\color{black}
+		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}_{t} - \frac{\eta}{\epsilon + \sqrt{\color{teal}\hat{\mathbf{v}}_{t}\color{black}}}\circ \color{purple}\hat{\mathbf{m}}_{t}\color{black}
 	\end{align*}
 $$  
 
