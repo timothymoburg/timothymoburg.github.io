@@ -78,14 +78,15 @@ where $\eta$ is the global learning rate, $\epsilon$ is some small number to pre
 Unfortunately, initializing $\mathbf{m}\_t$ and $\mathbf{v}\_t$ to be the zero vector at time $t=0$, does bias these variables towards zero. To correct for this bias in $\mathbf{m}\_t$ (the calculation equivalent for $\mathbf{v}\_t$), let us see how the [expectation](https://en.wikipedia.org/wiki/Expected_value) differs between $\mathbf{m}\_t$ and $\mathbf{g}\_t$. Letting $\mathbf{g}\_1,\cdots,\mathbf{g}\_T$ be the [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) gradients at subsequent timesteps, if we take the expectation of both sides of $\mathbf{m}\_t$, then use the linearity property of expectations, and finally recognize the evident geometric series, it follows that  
 
 $$
-	\begin{align*}
-	    \mathbb{E}\[\color{black}\mathbf{m}\_t\color{black}\] &= \mathbb{E}\[\beta\_1 \mathbf{m}\_{t-1} + (1-\beta\_1)\mathbf{g}\_t \]\\
-	    &= \mathbb{E}\left\[\sum\_{k=1}^{t} \beta\_1^{t-k} (1-\beta\_1) \mathbf{g}\_{k} \right\]\\
-	    &= \mathbb{E}\[\mathbf{g}\_{t} \] (1-\beta\_1) \sum\_{k=1}^{t} \beta\_1^{t-k} + \zeta \\
-	    &= \mathbb{E}\[\mathbf{g}\_{t} \] (1-\beta\_1) \frac{1-\beta\_1^{t}}{1-\beta\_1}  + \zeta \\
-	    &= \mathbb{E}\[\mathbf{g}\_{t} \] (1-\beta\_1^{t})  + \zeta
-	\end{align*}
-$$  
+\begin{align*}
+    \mathbb{E}[\mathbf{m}_t] &= \mathbb{E}[\beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\mathbf{g}_t] \\
+    &= \mathbb{E}\left[\sum_{k=1}^{t} \beta_1^{t-k} (1-\beta_1) \mathbf{g}_k \right] \\
+    &= \mathbb{E}[\mathbf{g}_t] (1-\beta_1) \sum_{k=1}^{t} \beta_1^{t-k} + \zeta \\
+    &= \mathbb{E}[\mathbf{g}_t] (1-\beta_1) \frac{1-\beta_1^{t}}{1-\beta_1}  + \zeta \\
+    &= \mathbb{E}[\mathbf{g}_t] (1-\beta_1^{t}) + \zeta
+\end{align*}
+$$
+  
 
 where $\zeta = 0$ if $\mathbb{E}[\mathbf{g}\_{k}]$ is stationary. Therefore, dividing $\mathbf{m}\_t$ by $(1-\beta\_1^{t})$ corrects its initialization bias.  
 
