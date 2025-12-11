@@ -6,7 +6,7 @@ $$
 	\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_{t} - \eta \mathbf{g}_{t}
 $$
 
-where $\boldsymbol{\theta}_{t}$ is our previous step, $\eta$ is a tunable parameter that determines the step size (also called the learning rate), and $\mathbf{g}_{t} = \nabla F\left(\boldsymbol{\theta}_{t}\right)$ is the Euclidean gradient of our objective function with respect to our parameters at time $t$.
+where $\boldsymbol{\theta}\_{t}$ is our previous step, $\eta$ is a tunable parameter that determines the step size (also called the learning rate), and $\mathbf{g}\_{t} = \nabla F\left(\boldsymbol{\theta}\_{t}\right)$ is the Euclidean gradient of our objective function with respect to our parameters at time $t$.
 
 Although gradient descent is a clever method for trying to find minimums, it does have some issues. The contours of many objective functions are far from ideal and can have sections where the direction of the gradient can fluctuate drastically in an area smaller than the step size taken, which can lead to chaotic routes towards the bottom or even prevention of the method from finding a minimum. To address these concerns, various modifications to gradient descent have been proposed. As of 2025, all but one ([L-BFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS)) of the most popular of these methods are first-order ones, not utilizing second derivative information due to the computational cost.
 
