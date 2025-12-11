@@ -16,10 +16,10 @@ In all of these methods, we will denote $\mathbf{\theta}\_t$ to be the parameter
 In gradient descent with momentum (also called the heavy ball method), we envision our parameter vector rolling down an error surface like a ball rolling down a hill with friction under the influence of gravity. Such a method yields an update rule that looks like  
 
 $$
-	\begin{align\*}
+	\begin{align*}
 		\color{red}\mathbf{v}\_{t+1}\color{black} &= \gamma \mathbf{v}\_{t} - \eta \mathbf{g}\_{t}\\
 		\boldsymbol{\theta}\_{t+1} &= \boldsymbol{\theta}\_{t} + \color{red}\mathbf{v}\_{t+1}\color{black}
-	\end{align\*}
+	\end{align*}
 $$  
 
 where $\gamma$ is a parameter similar to a coefficient of friction and $\eta$ is the global learning rate. Continuing with the dynamical ball analogy for this update rule, we note that, using the definition of the variable $\mathbf{g}\_t$, combining the two lines and rearranging yields  
