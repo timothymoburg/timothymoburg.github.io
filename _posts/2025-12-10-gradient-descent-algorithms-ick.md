@@ -63,7 +63,7 @@ $$
 where $\eta$ is the global learning rate, $\epsilon$ is some small number to prevent division by zero, and $\mathbf{r}_0 = \mathbf{0}$. RMSProp tends to perform well in on-line and non-stationary settings.  
 
 ## Adam
-Adam, a portmanteau of <ins>ada</ins>ptive <ins>m</ins>oment estimation, is another method with an adaptive learning rate, especially popular in the deep learning community where it was the optimizer chosen to train OpenAI's ChatGPT. Adam can be loosely thought of as RMSProp with windowed momentum. So, like in RMSProp, we will use an exponential moving average of squared gradients given here by $\color{black}\mathbf{v}\_{t} = \beta\_2 \mathbf{v}\_{t-1} + (1-\beta\_2)\mathbf{g}\_{t} \circ \mathbf{g}\_{t}$, but also incorporate an exponential moving average of momentum given here by $\color{black}\mathbf{m}\_{t}\color{black} = \beta\_1 \mathbf{m}\_{t-1} + (1-\beta\_1)\mathbf{g}\_{t}$.
+Adam, a portmanteau of <ins>ada</ins>ptive <ins>m</ins>oment estimation, is another method with an adaptive learning rate, especially popular in the deep learning community where it was the optimizer chosen to train OpenAI's ChatGPT. Adam can be loosely thought of as RMSProp with windowed momentum. So, like in RMSProp, we will use an exponential moving average of squared gradients given here by $\color{black}\mathbf{v}\_{t} = \beta\_{2} \mathbf{v}\_{t-1} + (1-\beta\_{2})\mathbf{g}\_{t} \circ \mathbf{g}\_{t}$, but also incorporate an exponential moving average of momentum given here by $\color{black}\mathbf{m}\_{t}\color{black} = \beta\_{1} \mathbf{m}\_{t-1} + (1-\beta\_{1})\mathbf{g}\_{t}$.
  Such properties yield a method that is almost Adam but not quite it, sometimes referred to as Adam (biased). Adam (biased) has the update rule  
 
 $$
@@ -74,9 +74,9 @@ $$
 	\end{align*}
 $$  
 
-where $\eta$ is the global learning rate, $\epsilon$ is some small number to prevent division by zero, $\beta_1,\beta_2 \in [0,1)$ are decay rates, and $\mathbf{m}_{0} = \mathbf{v}_{0} = \mathbf{0}$.  
+where $\eta$ is the global learning rate, $\epsilon$ is some small number to prevent division by zero, $\beta\_{1},\beta\_{2} \in [0,1)$ are decay rates, and $\mathbf{m}\_{0} = \mathbf{v}\_{0} = \mathbf{0}$.  
 
-Unfortunately, initializing $\mathbf{m}_t$ and $\mathbf{v}_t$ to be the zero vector at time $t=0$, does bias these variables towards zero. To correct for this bias in $\mathbf{m}_t$ (the calculation equivalent for $\mathbf{v}_t$), let us see how the [expectation](https://en.wikipedia.org/wiki/Expected_value) differs between $\mathbf{m}_t$ and $\mathbf{g}_t$. Letting $\mathbf{g}_1,\cdots,\mathbf{g}_T$ be the [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) gradients at subsequent timesteps, if we take the expectation of both sides of $\mathbf{m}_t$, then use the linearity property of expectations, and finally recognize the evident geometric series, it follows that  
+Unfortunately, initializing $\mathbf{m}\_{t}$ and $\mathbf{v}\_{t}$ to be the zero vector at time $t=0$, does bias these variables towards zero. To correct for this bias in $\mathbf{m}\_{t}$ (the calculation equivalent for $\mathbf{v}\_{t}$), let us see how the [expectation](https://en.wikipedia.org/wiki/Expected_value) differs between $\mathbf{m}\_{t}$ and $\mathbf{g}\_{t}$. Letting $\mathbf{g}\_{1},\cdots,\mathbf{g}\_{T}$ be the [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) gradients at subsequent timesteps, if we take the expectation of both sides of $\mathbf{m}\_{t}$, then use the linearity property of expectations, and finally recognize the evident geometric series, it follows that  
 
 $$
 \begin{align*}
@@ -89,7 +89,7 @@ $$
 $$
   
 
-where $\zeta = 0$ if $\mathbb{E}[\mathbf{g}_{k}]$ is stationary. Therefore, dividing $\mathbf{m}_t$ by $(1-\beta_1^{t})$ corrects its initialization bias.  
+where $\zeta = 0$ if $\mathbb{E}[\mathbf{g}\_{k}]$ is stationary. Therefore, dividing $\mathbf{m}\_{t}$ by $(1-\beta\_{1}^{t})$ corrects its initialization bias.  
 
 Combining RMSProp with windowed momentum and bias correction yields the actual Adam update rule  
 
@@ -103,6 +103,6 @@ $$
 	\end{align*}
 $$  
 
-where $\eta$ is the global learning rate, $\epsilon$ is some small number to prevent division by zero, $\beta_1,\beta_2 \in [0,1)$ are decay rates, and $\mathbf{m}_{0} = \mathbf{v}_{0} = \mathbf{0}$.  
+where $\eta$ is the global learning rate, $\epsilon$ is some small number to prevent division by zero, $\beta\_{1},\beta\_{2} \in [0,1)$ are decay rates, and $\mathbf{m}\_{0} = \mathbf{v}\_{0} = \mathbf{0}$.  
 
 One advantageous property of Adam stems from probability theory. The $k^{th}$ moment of a random variable, $X$, is defined to be the expectation of the random variable to the $k^{th}$ power, $\mathbb{E}[X^{k}]$. So the expectation of the gradient is called the first moment (also known as the mean) of the gradient and, by the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers), Adam's $\hat{\mathbf{m}}_t$ variable then is an estimate of it. Likewise, the expectation of the squared gradient is called the second moment (also known as the uncentered variance) of the gradient and, by the law of large numbers, Adam's $\hat{\mathbf{v}}_t$ variable is then an estimate of it. The ratio $\frac{\hat{\mathbf{m}}_t}{\hat{\mathbf{v}}_t}$ in Adam's effective stepsize can therefore be loosely thought of as a ratio of the mean to the square root of the variance (also known as the [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation)), which is sometime referred to as the [signal-to-noise ratio](https://en.wikipedia.org/wiki/Signal-to-noise_ratio) (SNR). A higher signal-to-noise ratio here indicates that the expected gradient is much stronger than the uncertainty in the gradient estimates, signifying that the estimates are more reliable, and Adam, as desired, will take a larger effective stepsize. Whereas a lower signal-to-noise ratio here indicates that the expected gradient is much weaker than the uncertainty in the gradient estimates, signifying that the estimates are less reliable, and Adam, as desired, will take a smaller effective stepsize. Such a desirable property might partly explain its numerable successes in practice.  
