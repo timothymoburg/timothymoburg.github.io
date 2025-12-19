@@ -1,7 +1,8 @@
 ---
-title: "Portfolio item number 3"
-excerpt: "Short description of portfolio item number 1"
+title: "Portfolio item number 1"
+excerpt: "Python code that displays the text, 'Hello, World!'"
 collection: portfolio
 ---
-```python markdown-code-runner
-print("Hello, world!")
+```python
+print('Hello World!')
+```
