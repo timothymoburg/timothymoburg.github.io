@@ -8,6 +8,8 @@ tags:
   - machine learning
   - math
 ---
+{% include toc %}
+
 ## Introduction
 	
 The high-level goal of many machine learning methods is to minimize a real-valued objective function (also called a cost function or loss function) $F: \mathbb{R}^n \rightarrow \mathbb{R}$ with respect to its $n$ parameters $\mathbf{\theta}_t = \left( \theta_1, \dots , \theta_n \right).$ One successful strategy of doing so, if $F$ is differentiable, is to use [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent), whereby we [iteratively](https://en.wikipedia.org/wiki/Iterative_method) update the parameters in the direction of steepest decrease, that given by the negative gradient of $F$, and gradually descend on a local minimum. This method is equivalent to a person lost in some mountains at night and trying to get to the base employing the strategy of repeatedly taking steps downhill in the direction where the terrain is the steepest at each spot. Therefore, if we denote $\boldsymbol{\theta}_0$ to be our starting location and $\boldsymbol{\theta}_t$ be our location after $t$ steps (and our $t^{th}$ approximation of the minimizer), then our next location is given by:
