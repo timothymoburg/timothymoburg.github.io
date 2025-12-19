@@ -1,6 +1,6 @@
 ---
 title: "Portfolio item number 1"
-excerpt: "Python code that displays the text, 'Hello, World!'"
+excerpt: "Python code for the command to print 'Hello, World!'"
 collection: portfolio
 ---
 ```python
