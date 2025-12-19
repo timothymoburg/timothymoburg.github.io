@@ -8,11 +8,14 @@ collection: portfolio
 <head>
     <!-- Use a stable 2025 release -->
     <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
+    <link rel="stylesheet" href="cdnjs.cloudflare.com">
+    <script src="cdnjs.cloudflare.com"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 <body>
     <!-- 1. Create a specific place for the output -->
     <div id="output-area"></div>
-
+    print("Hello, World!")
     <!-- 2. Target that area in your script -->
     <script type="py">
         from pyscript import display;
