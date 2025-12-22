@@ -15,30 +15,30 @@ Education
 
 Coursework Completed
 ======
-*Introduction to Computer Science
-*Algorithms & Data Structures
-*Software Design & Development
-*Database Management Systems
-*Web Development
-*Programming Languages
-*Discrete Structures
-*Calculus I	
-*Calculus II
-*Differential Equations	
-*Multivariable Calculus	
-*Real Analysis
-*Applied Linear Algebra	
-*Theory of Probability	
-*Numerical Analysis I	
-*Error Correcting Codes	
-*Math of Machine Learning I	
-*Math of Machine Learning II
-*Physics for Scientists & Engineers I	
-*Physics for Scientists & Engineers II
-*Chemical Principals
-*Statics & Dynamics	
-*Fundamentals of Electrical Engineering
-*Thermal Sciences I
+* Introduction to Computer Science
+* Algorithms & Data Structures
+* Software Design & Development
+* Database Management Systems
+* Web Development
+* Programming Languages
+* Discrete Structures
+* Calculus I	
+* Calculus II
+* Differential Equations	
+* Multivariable Calculus	
+* Real Analysis
+* Applied Linear Algebra	
+* Theory of Probability	
+* Numerical Analysis I	
+* Error Correcting Codes	
+* Math of Machine Learning I	
+* Math of Machine Learning II
+* Physics for Scientists & Engineers I	
+* Physics for Scientists & Engineers II
+* Chemical Principals
+* Statics & Dynamics	
+* Fundamentals of Electrical Engineering
+* Thermal Sciences I
   
 Projects
 ======
@@ -47,33 +47,21 @@ Projects
 Skills
 ======
 * Languages
-  *Python
-  *C++
-  *Java
-  *PHP
-  *SQL
-  *Javascript
-  *OCaml
-  *MATLAB
+  * Python
+  * C++
+  * Java
+  * PHP
+  * SQL
+  * Javascript
+  * OCaml
+  * MATLAB
 * Operating Systems
-  *Windows
-  *Mac OS
-  *Linux
+  * Windows
+  * Mac OS
+  * Linux
 
 Publications
 ======
   <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
